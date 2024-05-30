@@ -1,0 +1,154 @@
+#modal-section {
+  display: flex;
+  justify-content: center;
+}
+
+.modal {
+  display: flex;
+  position: absolute;
+  top: 500px;
+  width: 630px;
+  min-height: 200px;
+  border-radius: 10px;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  z-index: 10;
+}
+
+.modal div:first-child {
+  width: 90%;
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+.arrow-btn {
+  display: none;
+  position: absolute;
+  left: 25px;
+}
+
+#xmark-btn {
+  position: absolute;
+  right: 25px;
+  font-size: 22px;
+  border: none;
+  background-color: transparent;
+}
+
+.modal-title {
+  font-family: "Work Sans";
+  font-weight: 420;
+  font-size: 26px;
+  margin: 40px;
+}
+
+.modal-galery {
+  width: 400px;
+  min-height: 50px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  column-gap: 8px;
+  row-gap: 20px;
+  border-bottom: solid 1px #b3b3b3;
+  padding-bottom: 60px;
+}
+
+.modal-form {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+}
+.modal-form label {
+  line-height: 2;
+}
+
+.modal-form input {
+  display: block;
+  width: 100%;
+  height: 50px;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  margin-bottom: 30px;
+}
+
+.modal-galery img {
+  width: 100%;
+}
+
+.modal-btn {
+  width: 237px;
+  height: 36px;
+  border-radius: 60px;
+  margin: 40px auto;
+  font-family: "Syne";
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+  background-color: #1d6154;
+  border: none;
+}
+
+#modal-drop-area {
+  height: 169px;
+  width: 100%;
+  background-color: #e8f1f6;
+  box-shadow: none;
+  display: flex;
+  justify-content: center;
+}
+
+#modal-drop-area img {
+  object-fit: contain;
+}
+
+.dark-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 5;
+}
+#modal-drop-area input[type="file"]:: {
+  visibility: hidden;
+}
+#input-file {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+#input-file + label {
+  font-family: "Work Sans";
+  font-size: 14px;
+  font-weight: 500;
+  color: #306685;
+  background-color: #cbd6dc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 36px;
+  width: 173px;
+  border-radius: 50px;
+  position: relative;
+  top: 100px;
+}
+
+#input-file:focus + label,
+#input-file + label:hover {
+  background-color: #dddd;
+}
+
+#input-file + label {
+  cursor: pointer; /* "hand" cursor */
+}
+
+#input-file:focus + label {
+  outline: 1px dotted #000;
+  outline: -webkit-focus-ring-color auto 5px;
+}

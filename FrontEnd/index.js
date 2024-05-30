@@ -128,3 +128,28 @@ const resetGallery = () => {
 
 //
 createGallery();
+
+/********************************************* */
+const loginState = sessionStorage.getItem("loginState");
+if (loginState) {
+  // Select all elements to change state"
+  const elements = document.querySelectorAll(".edit-mod-el");
+  const loginBtn = document.getElementById("login-btn");
+  // Loop through each element and set the display style to "flex"
+  elements.forEach((element) => {
+    element.style.display = "flex";
+  });
+  loginBtn.style.display = "none";
+}
+
+// Logoff edit mode
+document.getElementById("logoff-btn").addEventListener("click", (e) => {
+  sessionStorage.setItem("loginState", false);
+  const elements = document.querySelectorAll(".edit-mod-el");
+  const loginBtn = document.getElementById("login-btn");
+  // Loop through each element and set the display style to "none"
+  elements.forEach((element) => {
+    element.style.display = "none";
+  });
+  loginBtn.style.display = "flex";
+});
