@@ -1,4 +1,4 @@
-// fecth data
+/* fetch data from API function*/
 const fetchdata = async () => {
   try {
     const response = await axios.get("http://localhost:5678/api/works");
@@ -8,50 +8,51 @@ const fetchdata = async () => {
     throw error; // Re-throw the error to be caught by the caller
   }
 };
-
-// create figure element
+/* Create a set for catgories */
+const CreateCategories = (data) => {
+  let categories = [...new Set(data.map(({ category }) => category.name))];
+  return categories;
+};
+/* Funtion for setting multiple attributes*/
+const setAttributes = (elem, attrs) => {
+  for (let key in attrs) {
+    elem.setAttribute(key, attrs[key]);
+  }
+};
+/* Funtion for creating figure element for gallery*/
 const createFigure = (image, content) => {
-  // Create the <figure> element
   const figureElement = document.createElement("figure");
-
-  // Create the <img> element and set its attributes
   const imgElement = document.createElement("img");
-  imgElement.src = image;
-  imgElement.alt = content;
-
-  // Create the <figcaption> element and set its text content
-  const figcaptionElement = document.createElement("figcaption");
-  figcaptionElement.textContent = content;
-
-  // Append the <img> and <figcaption> elements to the <figure> element
+  setAttributes(imgElement, {
+    src: image,
+    alt: content,
+  });
+  const figcaptionElement = document.createElement("figcaption"); // Create the <figcaption> element and set its text content
+  setAttributes(figcaptionElement, {
+    textContent: content,
+  });
   figureElement.appendChild(imgElement);
   figureElement.appendChild(figcaptionElement);
-
-  // Find the .gallery element
-  const galleryElement = document.querySelector(".gallery");
-
-  // Append the <figure> element to the .gallery element
-  galleryElement.appendChild(figureElement);
+  const galleryElement = document.querySelector(".gallery"); // Find the .gallery element
+  galleryElement.appendChild(figureElement); // Append the <figure> element to the .gallery element
 };
 
-// create filter bar
+/* function for creating filter bar*/
 const createFilter = (content) => {
   const button = document.createElement("button");
-  // Set the button text
-  button.textContent = content;
-  // Set the button type
-  button.type = "button";
-  // Set the value
-  button.value = content;
-  // Set EventListener
+  setAttributes(button, {
+    type: "button",
+    value: content,
+    textContent: "button",
+  });
+  button.textContent = content; // add text to button
   if (content == "Tous") {
     button.classList.add("active");
   }
   button.addEventListener("click", () => {
     let buttons = document.querySelectorAll("button");
     buttons.forEach((btn) => btn.classList.remove("active"));
-    // Add the 'active' class to the clicked button
-    button.classList.add("active");
+    button.classList.add("active"); // Add the 'active' class to the clicked button
     resetGallery();
     if (content == "Tous") {
       filterGaleryAll();
@@ -67,17 +68,16 @@ const createFilter = (content) => {
   filterDiv.appendChild(button);
 };
 
-// init galery
+/* init galery*/
 const createGallery = async () => {
   try {
-    const data = await fetchdata(); // Assuming fetchdata() returns a Promise
-    let categories = [...new Set(data.map(({ category }) => category.name))];
-    categories.unshift("Tous");
+    const data = await fetchdata();
+    let categories = CreateCategories(data);
+    categories.unshift("Tous"); //add "Tous" as category
     categories.forEach((category) => {
       createFilter(category);
     });
     data.forEach(({ imageUrl, title }) => {
-      // Destructure data object assuming it contains imageUrl and content properties
       createFigure(imageUrl, title);
     });
   } catch (error) {
@@ -85,7 +85,7 @@ const createGallery = async () => {
   }
 };
 
-// refresh galery element with filter
+/*refresh galery element with filter */
 const filterGalery = async (filter) => {
   try {
     const data = await fetchdata();

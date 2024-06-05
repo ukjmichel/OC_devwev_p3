@@ -23,17 +23,22 @@
 }
 
 .arrow-btn {
-  display: none;
+  visibility: hidden;
   position: absolute;
   left: 25px;
+  font-size: 22px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 }
 
-#xmark-btn {
+.xmark-btn {
   position: absolute;
   right: 25px;
   font-size: 22px;
   border: none;
   background-color: transparent;
+  cursor: pointer;
 }
 
 .modal-title {
@@ -54,16 +59,17 @@
   padding-bottom: 60px;
 }
 
-.modal-form {
+#modal-form {
   width: 400px;
   display: flex;
   flex-direction: column;
 }
-.modal-form label {
+#modal-form label {
   line-height: 2;
 }
 
-.modal-form input {
+#modal-form input,
+#modal-form select {
   display: block;
   width: 100%;
   height: 50px;
@@ -87,6 +93,13 @@
   color: white;
   background-color: #1d6154;
   border: none;
+  cursor: pointer;
+}
+
+.modal-line {
+  width: 100%;
+  border: solid 1px #b3b3b3;
+  margin-top: 10px;
 }
 
 #modal-drop-area {
@@ -111,7 +124,7 @@
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 5;
 }
-#modal-drop-area input[type="file"]:: {
+#modal-drop-area input[type="file"] {
   visibility: hidden;
 }
 #input-file {
