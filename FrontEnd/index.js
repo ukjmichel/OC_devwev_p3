@@ -8,10 +8,18 @@ const fetchdata = async () => {
     throw error; // Re-throw the error to be caught by the caller
   }
 };
-/* Create a set for catgories */
+/* function for creating a set for catgories */
 const CreateCategories = (data) => {
-  let categories = [...new Set(data.map(({ category }) => category.name))];
-  return categories;
+  const uniqueCategories = [
+    ...new Set(
+      data.map(({ category }) =>
+        JSON.stringify({ name: category.name, id: category.id })
+      )
+    ),
+  ].map((item) => JSON.parse(item));
+  const categories = uniqueCategories.map((item) => item.name);
+  const categoriesId = uniqueCategories.map((item) => item.id);
+  return { categories, categoriesId };
 };
 /* Funtion for setting multiple attributes*/
 const setAttributes = (elem, attrs) => {
@@ -36,7 +44,6 @@ const createFigure = (image, content) => {
   const galleryElement = document.querySelector(".gallery"); // Find the .gallery element
   galleryElement.appendChild(figureElement); // Append the <figure> element to the .gallery element
 };
-
 /* function for creating filter bar*/
 const createFilter = (content) => {
   const button = document.createElement("button");
@@ -67,12 +74,11 @@ const createFilter = (content) => {
   // Append the button to the div element
   filterDiv.appendChild(button);
 };
-
 /* init galery*/
 const createGallery = async () => {
   try {
     const data = await fetchdata();
-    let categories = CreateCategories(data);
+    let categories = CreateCategories(data).categories;
     categories.unshift("Tous"); //add "Tous" as category
     categories.forEach((category) => {
       createFilter(category);

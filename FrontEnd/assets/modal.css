@@ -2,11 +2,10 @@
   display: flex;
   justify-content: center;
 }
-
 .modal {
   display: flex;
-  position: absolute;
-  top: 500px;
+  position: fixed;
+  top: 30%;
   width: 630px;
   min-height: 200px;
   border-radius: 10px;
@@ -16,13 +15,7 @@
   z-index: 10;
 }
 
-.modal div:first-child {
-  width: 90%;
-  font-size: 18px;
-  margin-top: 20px;
-}
-
-.arrow-btn {
+#arrow-btn {
   visibility: hidden;
   position: absolute;
   left: 25px;
@@ -31,7 +24,6 @@
   background-color: transparent;
   cursor: pointer;
 }
-
 .xmark-btn {
   position: absolute;
   right: 25px;
@@ -40,15 +32,13 @@
   background-color: transparent;
   cursor: pointer;
 }
-
 .modal-title {
   font-family: "Work Sans";
   font-weight: 420;
   font-size: 26px;
   margin: 40px;
 }
-
-.modal-galery {
+#modal-galery {
   width: 400px;
   min-height: 50px;
   display: grid;
@@ -58,28 +48,30 @@
   border-bottom: solid 1px #b3b3b3;
   padding-bottom: 60px;
 }
-
-#modal-form {
-  width: 400px;
+.modal-delete-btn {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  height: 17px;
+  width: 17px;
+  background-color: black;
+  border-radius: 2px;
+  position: relative;
+  left: 53px;
+  top: 6px;
 }
-#modal-form label {
-  line-height: 2;
+.modal-delete-btn i {
+  color: white;
+  font-size: 10px;
+  cursor: pointer;
 }
 
-#modal-form input,
-#modal-form select {
-  display: block;
-  width: 100%;
-  height: 50px;
-  border: none;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-  margin-bottom: 30px;
-}
-
-.modal-galery img {
-  width: 100%;
+.modal-galery-el {
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 102px;
 }
 
 .modal-btn {
@@ -95,26 +87,11 @@
   border: none;
   cursor: pointer;
 }
-
 .modal-line {
   width: 100%;
   border: solid 1px #b3b3b3;
   margin-top: 10px;
 }
-
-#modal-drop-area {
-  height: 169px;
-  width: 100%;
-  background-color: #e8f1f6;
-  box-shadow: none;
-  display: flex;
-  justify-content: center;
-}
-
-#modal-drop-area img {
-  object-fit: contain;
-}
-
 .dark-overlay {
   position: fixed;
   top: 0;
@@ -124,34 +101,6 @@
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 5;
 }
-#modal-drop-area input[type="file"] {
-  visibility: hidden;
-}
-#input-file {
-  width: 0.1px;
-  height: 0.1px;
-  opacity: 0;
-  overflow: hidden;
-  position: absolute;
-  z-index: -1;
-}
-
-#input-file + label {
-  font-family: "Work Sans";
-  font-size: 14px;
-  font-weight: 500;
-  color: #306685;
-  background-color: #cbd6dc;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 36px;
-  width: 173px;
-  border-radius: 50px;
-  position: relative;
-  top: 100px;
-}
-
 #input-file:focus + label,
 #input-file + label:hover {
   background-color: #dddd;
@@ -160,7 +109,6 @@
 #input-file + label {
   cursor: pointer; /* "hand" cursor */
 }
-
 #input-file:focus + label {
   outline: 1px dotted #000;
   outline: -webkit-focus-ring-color auto 5px;
