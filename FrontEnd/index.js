@@ -36,11 +36,12 @@ const createFigure = (image, content) => {
     alt: content,
   });
   const figcaptionElement = document.createElement("figcaption"); // Create the <figcaption> element and set its text content
-  setAttributes(figcaptionElement, {
-    textContent: content,
-  });
+  figcaptionElement.innerHTML = content;
   figureElement.appendChild(imgElement);
   figureElement.appendChild(figcaptionElement);
+  figureElement.addEventListener("click", (e) => {
+    window.open(image, "content");
+  });
   const galleryElement = document.querySelector(".gallery"); // Find the .gallery element
   galleryElement.appendChild(figureElement); // Append the <figure> element to the .gallery element
 };
@@ -70,7 +71,7 @@ const createFilter = (content) => {
   // Set the button class
   button.classList.add("filter-button");
   // Get the div element with the class of 'filter'
-  const filterDiv = document.querySelector(".filter");
+  const filterDiv = document.getElementById("filter");
   // Append the button to the div element
   filterDiv.appendChild(button);
 };

@@ -31,12 +31,16 @@
       <nav class=".navbar">
         <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
         <ul>
-          <li>projets</li>
-          <li><a href="#contact">contact</a></li>
-          <li id="login-btn"><a href="login.html">login</a></li>
-          <li id="logoff-btn" class="edit-mod-el">logoff</li>
+          <li><i class="fa-solid fa-paintbrush navbar-icon"></i><span>projets</span></li>
           <li>
-            <img src="./assets/icons/instagram.png" alt="Instagram" />
+            <a href="#contact"><i class="fa-solid fa-envelope navbar-icon"></i><span>contact</span></i></a>
+          </li>
+          <li id="login-btn">
+            <a href="login.html"><i class="fa-solid fa-lock navbar-icon"></i></i><span>login</span></a>
+          </li>
+          <li id="logoff-btn" class="edit-mod-el"><i class="fa-solid fa-unlock navbar-icon"></i><span>logoff</span></li>
+          <li>
+            <i class="fa-brands fa-instagram"></i>
           </li>
         </ul>
       </nav>
@@ -69,7 +73,7 @@
       <section id="portfolio">
         <h2>Mes Projets</h2>
         <h3 id="open-modal" class="edit-mod-el">modifier</h3>
-        <div class="filter"></div>
+        <div id="filter"></div>
         <div class="gallery">
           <!-- fetch data from API -->
         </div>

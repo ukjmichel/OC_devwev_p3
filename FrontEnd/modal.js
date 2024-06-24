@@ -5,7 +5,7 @@ const modalSection = document.getElementById("modal-section"); // Select the mod
 /******************************************************************************* */
 
 /* Function that appends a modal element with an image*/
-const createModalElement = ({ imageUrl, id }) => {
+const createModalElement = ({ imageUrl, id, name }) => {
   const modalGallery = document.getElementById("modal-galery");
   const figure = document.createElement("figure");
   setAttributes(figure, {
@@ -50,7 +50,7 @@ const openModal = () => {
   const modal = document.createElement("div"); // Create the modal container
   modal.className = "modal";
   const modalHeader = document.createElement("div"); // Create the modal header container
-  modalHeader.className = "modal-header";
+  modalHeader.id = "modal-header";
 
   const closeBtn = document.createElement("button"); // Create the close button (x mark) for the modal
   setAttributes(closeBtn, {
@@ -87,7 +87,6 @@ const openModal = () => {
 const openModalGalerie = () => {
   if (isFormOpen) {
     deleteModalForm();
-    console.log("hello");
   }
   const modal = document.querySelector(".modal");
   const arrowBtn = document.getElementById("arrow-btn");

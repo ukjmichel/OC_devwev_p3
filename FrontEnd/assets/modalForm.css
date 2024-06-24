@@ -3,9 +3,6 @@
   display: flex;
   flex-direction: column;
 }
-#modal-form label {
-  line-height: 2;
-}
 
 #modal-form input,
 #modal-form select {
@@ -20,14 +17,30 @@
 #modal-drop-area {
   height: 169px;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: #e8f1f6;
   box-shadow: none;
-  display: flex;
-  justify-content: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-#modal-drop-area img {
-  object-fit: contain;
+#drop-icon {
+  position: relative;
+  top: 20px;
+  height: 59px;
+}
+
+#modal-form label {
+  line-height: 2;
+}
+
+#drop-text {
+  position: relative;
+  top: 50px;
+  color: #444444;
 }
 
 #modal-drop-area input[type="file"] {
@@ -55,5 +68,24 @@
   width: 173px;
   border-radius: 50px;
   position: relative;
-  top: 100px;
+  top: 40px;
+}
+
+#modal-submit-btn {
+  width: 237px;
+  height: 36px;
+  border-radius: 60px;
+  margin: 40px auto;
+  font-family: "Syne";
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+  border: none;
+}
+
+.enabled-btn{
+  background-color: #1d6154;
+}
+.disabled-btn{
+  background-color: #a7a7a7;
 }

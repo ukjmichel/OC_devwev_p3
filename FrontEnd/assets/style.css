@@ -125,13 +125,15 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
 /** end reset css**/
-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+main,
+header,
+section {
   max-width: 1440px;
   margin: auto;
+}
+body {
   font-family: "Work Sans";
   font-size: 14px;
   line-height: 1;
@@ -139,30 +141,48 @@ body {
 }
 
 main {
-  padding: 0 300px;
+  display: block;
+  margin: auto;
 }
-header nav {
-  display: flex;
-  justify-content: space-between;
-  margin: 50px 0;
-  padding: 0 200px;
+
+b {
+  font-weight: bold;
 }
-nav a {
-  text-decoration: none;
-  color: black;
-}
+
 .edit-banner {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  width: 100%;
+  width: 100vw;
+  max-width: 1440px;
   height: 60px;
   color: white;
   background-color: black;
 }
-section {
-  margin: 50px 0;
+
+header nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+nav {
+  margin: 20px;
+}
+
+nav a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: black;
+}
+
+nav i {
+  font-size: 17px;
+  color: #b1663c;
+}
+
+nav span {
+  display: none;
 }
 
 h1 {
@@ -190,10 +210,11 @@ nav ul {
   display: flex;
   align-items: center;
   list-style-type: none;
-  gap: 50px;
+  gap: 40px;
 }
 nav li {
   display: flex;
+
   align-items: center;
   font-size: 1.2em;
   font-weight: 400;
@@ -213,21 +234,15 @@ nav a:hover {
 }
 #introduction {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-around;
-  margin-bottom: 120px;
-}
-#introduction figure {
-  flex: 1;
-}
-#introduction img {
-  display: block;
-  width: 84%;
-  z-index: 1;
+  justify-content: center;
+  overflow: hidden;
 }
 
 #introduction article {
-  flex: 1;
+  padding: 10px;
+  text-align: center;
 }
 #introduction h2 {
   margin-bottom: 1em;
@@ -236,10 +251,12 @@ nav a:hover {
 #introduction p {
   margin-bottom: 0.5em;
 }
+
 #portfolio {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 10px;
 }
 
 #portfolio h3 {
@@ -251,15 +268,13 @@ nav a:hover {
 #portfolio h3::before {
   content: "\f044";
   font: var(--fa-font-regular);
-  padding-right: 10px;
 }
 #portfolio h2 {
   display: flex;
-  justify-content: center;
+  justify-self: center;
   align-items: center;
   text-align: center;
   margin-bottom: 1em;
-  width: 1140px;
 }
 
 .gallery {
@@ -267,11 +282,13 @@ nav a:hover {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-column-gap: 20px;
-  grid-row-gap: 20px;
-}
+  
 
+}
 .gallery img {
   width: 100%;
+
+
 }
 #contact {
   width: 50%;
@@ -333,18 +350,18 @@ footer li {
   line-height: 1.2;
 }
 
-.filter {
+#filter {
   display: flex;
   justify-content: center;
   gap: 10px;
   margin-bottom: 40px;
 }
 
-.filter button {
+#filter button {
   font-family: "Syne";
   font-size: 16px;
   font-weight: 700;
-  padding: 0px 20px;
+
   border: solid 1px #1d6154;
   border-radius: 60px;
   color: #1d6154;
@@ -352,12 +369,12 @@ footer li {
   background-color: transparent;
 }
 
-.filter .active {
+#filter .active {
   background-color: #1d6154;
   color: white;
 }
 
-.filter button:hover {
+#filter button:hover {
   text-decoration: underline;
 }
 
@@ -368,5 +385,53 @@ footer li {
 .edit-banner h3::before {
   content: "\f044";
   font: var(--fa-font-regular);
-  padding-right: 10px;
+}
+
+@media screen and (min-width: 768px) {
+  .navbar-icon {
+    display: none;
+  }
+  nav span {
+    display: inline;
+  }
+  nav i:last-child {
+    color: black;
+  }
+  nav span:hover,
+  nav i:hover {
+    color: #b1663c;
+  }
+
+  #introduction {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 150px;
+    margin-bottom: 100px;
+  }
+  #introduction img {
+    width: 84%;
+  }
+  #introduction figure {
+    display: flex;
+    justify-content: center;
+    
+  }
+  figcaption {
+    margin: 5px;
+  }
+  #introduction article {
+    font-size: 14px;
+    text-align: left;
+  }
+  #introduction p {
+    max-width: 400px;
+    line-height: 1.2;
+  }
+  #filter button {
+    margin: 20px 0px;
+    padding: 10px;
+  }
+  #portfolio {
+    margin: 50px;
+  }
 }
