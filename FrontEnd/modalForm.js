@@ -1,9 +1,14 @@
-/*Function that create the form */
+/*
+*
+*/
 const preventDefaults = (e) => {
   e.preventDefault();
   e.stopPropagation();
 };
 
+/*
+*
+*/
 const openModalForm = async () => {
   isFormOpen = true;
   deleteModalGallery(); //delete modal gallery
@@ -18,7 +23,7 @@ const openModalForm = async () => {
   const modalForm = document.createElement("form"); // create the form
   modalForm.id = "modal-form"; // append class
 
-  const dropArea = createDropArea(); // create drop area
+  const dropArea = appendDropArea(); // create drop area
 
   const titleLabel = document.createElement("label");
   setAttributes(titleLabel, {
@@ -39,17 +44,17 @@ const openModalForm = async () => {
   });
   categorieLabel.innerHTML = "Categorie";
 
-  const categorieSelect = await createCategorySelect();
+  const categorieSelect = await appendCategorySelect();
 
   const spanLine = document.createElement("span");
   setAttributes(spanLine, {
     class: "modal-line",
   });
 
-  const submitBtn = createSubmitBtn();
+  const submitBtn = appendSubmitBtn();
   modalForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    postDataToAPI();
+    postNewWorkToAPI();
   });
   modalForm.appendChild(dropArea);
   modalForm.appendChild(titleLabel);
@@ -62,12 +67,19 @@ const openModalForm = async () => {
 
   setValidateform();
 };
+
+/*
+*
+*/
 const deleteModalForm = () => {
   document.querySelector("#modal-form").remove();
   isFormOpen = false;
 };
 
-const createDropArea = () => {
+/*
+*
+*/
+const appendDropArea = () => {
   const dropArea = document.createElement("div"); //create the drop area
   setAttributes(dropArea, {
     id: "modal-drop-area",
@@ -187,9 +199,14 @@ const handleInputFile = (e) => {
     alert("files format not accepted");
   }
 };
-const createCategorySelect = async () => {
+
+/*
+*
+*/
+
+const appendCategorySelect = async () => {
   const data = await fetchdata();
-  const { categories, categoriesId } = CreateCategories(data);
+  const { categories, categoriesId } = extractCategories(data);
 
   const categorieSelect = document.createElement("select");
   setAttributes(categorieSelect, {
@@ -207,7 +224,12 @@ const createCategorySelect = async () => {
   });
   return categorieSelect;
 };
-const createSubmitBtn = () => {
+
+/*
+*
+*/
+
+const appendSubmitBtn = () => {
   const submitBtn = document.createElement("button");
   setAttributes(submitBtn, {
     id: "modal-submit-btn",
@@ -220,7 +242,11 @@ const createSubmitBtn = () => {
   return submitBtn;
 };
 
-const postDataToAPI = async () => {
+/*
+*
+*/
+
+const postNewWorkToAPI = async () => {
   const title = document.getElementById("title").value;
   const image = document.getElementById("input-file").files[0];
   const category = parseInt(document.getElementById("category").value);
@@ -244,6 +270,10 @@ const postDataToAPI = async () => {
       console.log(error);
     });
 };
+
+/*
+* verify if form ready to be submit
+*/
 
 const setValidateform = () => {
   const submitBtn = document.getElementById("modal-submit-btn");

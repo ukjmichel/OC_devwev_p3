@@ -259,13 +259,13 @@ nav a:hover {
   padding: 10px;
 }
 
-#portfolio h3 {
+#portfolio p {
   position: relative;
   bottom: 50px;
   left: 180px;
 }
 
-#portfolio h3::before {
+#portfolio p::before {
   content: "\f044";
   font: var(--fa-font-regular);
 }
@@ -361,7 +361,6 @@ footer li {
   font-family: "Syne";
   font-size: 16px;
   font-weight: 700;
-
   border: solid 1px #1d6154;
   border-radius: 60px;
   color: #1d6154;

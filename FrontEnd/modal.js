@@ -1,11 +1,24 @@
-/*********************************************************************** */
-let isModalOpen = false; // Variable that holds the state of the modal (modal)
-let isFormOpen = false;
-const modalSection = document.getElementById("modal-section"); // Select the modal section container
-/******************************************************************************* */
+/**
+ * 
+ */
 
-/* Function that appends a modal element with an image*/
-const createModalElement = ({ imageUrl, id, name }) => {
+let isModalOpen = false; 
+let isFormOpen = false;
+const modalSection = document.getElementById("modal-section"); 
+
+/*
+*
+*/
+
+const createModalGallery = async () => {
+  // Fetch data asynchronously
+  const data = await fetchdata();
+  // For each item in the fetched data, create and append a modal element
+  data.forEach((data) => {
+    appendModalElement(data);
+  });
+};
+const appendModalElement = ({ imageUrl, id, name }) => {
   const modalGallery = document.getElementById("modal-galery");
   const figure = document.createElement("figure");
   setAttributes(figure, {
@@ -20,29 +33,20 @@ const createModalElement = ({ imageUrl, id, name }) => {
   deleteBtn.innerHTML = "<i class='fa-solid fa-trash-can'></i>";
   deleteBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    deleteDataFromAPI(id);
+    deleteWorkFromAPI(id);
   });
   figure.appendChild(deleteBtn);
   modalGallery.appendChild(figure);
 };
-
-/*Function that appends all elements to the modal gallery by fetching data*/
-const createModalGallery = async () => {
-  // Fetch data asynchronously
-  const data = await fetchdata();
-  // For each item in the fetched data, create and append a modal element
-  data.forEach((data) => {
-    createModalElement(data);
-  });
-};
-
-/* Function that deletes all elements in the modal gallery*/
 const deleteModalGallery = () => {
   document.querySelector(".modal-btn").remove();
   document.getElementById("modal-galery").remove();
 };
 
-/* Function that create the modal layout*/
+/**
+ * 
+ */
+
 const openModal = () => {
   isModalOpen = true; // Set the modal state to true
 
@@ -82,8 +86,6 @@ const openModal = () => {
   openModalGalerie(); // Append modal galery
   /************************************************ */
 };
-
-/* Function that create the galerie */
 const openModalGalerie = () => {
   if (isFormOpen) {
     deleteModalForm();
@@ -108,7 +110,10 @@ const openModalGalerie = () => {
   createModalGallery();
 };
 
-/* Function that closes the modal*/
+/**
+ * 
+ */
+
 const closeModal = () => {
   // Select the modal section container
   const modalSection = document.getElementById("modal-section");
@@ -125,8 +130,11 @@ const closeModal = () => {
   console.log("isModalOpen:", isModalOpen);
 };
 
-/*Event listener used to open the modal*/
-document.getElementById("open-modal").addEventListener("click", () => {
+/*
+* 
+*/
+
+document.getElementById("open-modal-btn").addEventListener("click", () => {
   // Check if the modal is not already open
   if (isModalOpen == false) {
     // Open the modal
@@ -135,7 +143,11 @@ document.getElementById("open-modal").addEventListener("click", () => {
   }
 });
 
-const deleteDataFromAPI = async (id) => {
+/*
+*
+*/
+
+const deleteWorkFromAPI = async (id) => {
   const token = localStorage.getItem("token");
   await axios
     .delete(`http://localhost:5678/api/works/${id}`, {
