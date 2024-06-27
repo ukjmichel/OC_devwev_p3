@@ -1,14 +1,14 @@
 /**
- * 
+ *
  */
 
-let isModalOpen = false; 
+let isModalOpen = false;
 let isFormOpen = false;
-const modalSection = document.getElementById("modal-section"); 
+const modalSection = document.getElementById("modal-section");
 
 /*
-*
-*/
+ *
+ */
 
 const createModalGallery = async () => {
   // Fetch data asynchronously
@@ -18,7 +18,7 @@ const createModalGallery = async () => {
     appendModalElement(data);
   });
 };
-const appendModalElement = ({ imageUrl, id, name }) => {
+const appendModalElement = ({ imageUrl, id }) => {
   const modalGallery = document.getElementById("modal-galery");
   const figure = document.createElement("figure");
   setAttributes(figure, {
@@ -31,20 +31,28 @@ const appendModalElement = ({ imageUrl, id, name }) => {
     value: id,
   });
   deleteBtn.innerHTML = "<i class='fa-solid fa-trash-can'></i>";
-  deleteBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    deleteWorkFromAPI(id);
-  });
+  deleteBtn.addEventListener(
+    "click",
+    async (e) =>  {
+      e.stopPropagation();
+      e.preventDefault();
+      sessionStorage.setItem("load",true);
+      await deleteWorkFromAPI(id);
+      
+    },
+    false
+  );
   figure.appendChild(deleteBtn);
   modalGallery.appendChild(figure);
 };
+
 const deleteModalGallery = () => {
   document.querySelector(".modal-btn").remove();
   document.getElementById("modal-galery").remove();
 };
 
 /**
- * 
+ *
  */
 
 const openModal = () => {
@@ -111,7 +119,7 @@ const openModalGalerie = () => {
 };
 
 /**
- * 
+ *
  */
 
 const closeModal = () => {
@@ -126,13 +134,11 @@ const closeModal = () => {
   // Set the modal state to false
   isModalOpen = false;
   isFormOpen = false;
-  // Log the modal state to the console
-  console.log("isModalOpen:", isModalOpen);
 };
 
 /*
-* 
-*/
+ *
+ */
 
 document.getElementById("open-modal-btn").addEventListener("click", () => {
   // Check if the modal is not already open
@@ -144,8 +150,8 @@ document.getElementById("open-modal-btn").addEventListener("click", () => {
 });
 
 /*
-*
-*/
+ *
+ */
 
 const deleteWorkFromAPI = async (id) => {
   const token = localStorage.getItem("token");
@@ -159,7 +165,22 @@ const deleteWorkFromAPI = async (id) => {
     .then((response) => {
       console.log(response);
     })
+
     .catch((error) => {
       console.log(error);
     });
 };
+
+/**
+ * reload modal when work is deleted
+ */
+
+const reloadModal = ()=>{
+  const load = sessionStorage.getItem('load');
+  if(load){
+    sessionStorage.setItem('load',false)
+    openModal();
+  }
+}
+
+reloadModal()
